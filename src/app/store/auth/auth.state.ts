@@ -1,5 +1,5 @@
 export interface AuthState {
-  user: { email: string; password?: string; repeatPassword?: string } | null; // Make password and RepeatPassword optional
+  user: { email: string; password?: string; repeatPassword?: string } | null;
   isAuthenticated: boolean;
   loading: boolean;
   error: string | null;

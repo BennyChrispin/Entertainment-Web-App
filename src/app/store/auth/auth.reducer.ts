@@ -33,7 +33,7 @@ const _authReducer = createReducer(
       email: user.email,
       password: user.password,
       repeatPassword: user.repeatPassword,
-    }, // Keep all properties during sign up
+    },
     loading: false,
     error: null,
   })),
