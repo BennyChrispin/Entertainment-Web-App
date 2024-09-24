@@ -1,99 +1,106 @@
-<div class="flex items-center justify-center min-h-screen">
-  <form
-    [formGroup]="authForm"
-    (ngSubmit)="onSubmit()"
-    class="bg-secondary p-6 rounded-3xl shadow-md w-full max-w-md"
-  >
-    <h2 class="text-3xl font-extrabold mb-4 text-white text-start items-start">
-      {{ isLogin ? "Login" : "Sign Up" }}
-    </h2>
+<div class="flex-1 items-center justify-center min-h-screen">
+  <div class="mt-20 flex items-center justify-center">
+    <img src="../../../assets/icons/logo.svg" alt="Logo" class="w-10 h-10" />
+  </div>
 
-    <div class="mb-4">
-      <input
-        type="email"
-        id="email"
-        formControlName="email"
-        placeholder="Email Address"
-        class="p-4 border-b border-light w-full bg-transparent placeholder:text-lg px-4 outline-none text-white text-lg"
-      />
-      <div
-        *ngIf="
-          authForm.get('email')?.invalid &&
-          (authForm.get('email')?.touched || authForm.get('email')?.dirty)
-        "
-        class="relative"
-      >
-        <small class="text-primary text-sm absolute bottom-3 right-4"
-          >Can't be empty.</small
-        >
-      </div>
-    </div>
-
-    <div class="mb-6">
-      <input
-        type="password"
-        id="password"
-        formControlName="password"
-        class="p-4 border-b border-light w-full bg-transparent placeholder:text-lg px-4 outline-none text-white text-lg"
-        placeholder="Password"
-      />
-      <div
-        *ngIf="
-          authForm.get('password')?.invalid &&
-          (authForm.get('password')?.touched || authForm.get('password')?.dirty)
-        "
-      >
-        <small class="text-primary text-sm"
-          >Password must be at least 6 characters long.</small
-        >
-      </div>
-    </div>
-
-    <!-- Conditionally show repeat password input for sign up -->
-    <div *ngIf="!isLogin" class="mb-6">
-      <input
-        type="password"
-        id="repeatPassword"
-        formControlName="repeatPassword"
-        class="p-4 border-b border-light w-full bg-transparent placeholder:text-lg px-4 outline-none text-white text-lg"
-        placeholder="Repeat password"
-      />
-      <div
-        *ngIf="
-          authForm.get('repeatPassword')?.invalid &&
-          (authForm.get('repeatPassword')?.touched ||
-            authForm.get('repeatPassword')?.dirty)
-        "
-        class="relative"
-      >
-        <small class="text-primary text-sm absolute bottom-3 right-4"
-          >Can't be empty.</small
-        >
-      </div>
-
-      <!-- Show error if passwords do not match -->
-      <div *ngIf="authForm.errors?.['mismatch']" class="relative">
-        <small class="text-primary text-sm absolute bottom-3 right-4"
-          >Passwords must match.</small
-        >
-      </div>
-    </div>
-
-    <button
-      type="submit"
-      class="w-full bg-primary hover:bg-white hover:text-dark duration-300 transition-all ease-out text-white font-bold py-4 px-4 rounded-lg mt-2 cursor-pointer"
-      [disabled]="authForm.invalid"
+  <div class="flex items-center justify-center mt-24">
+    <form
+      [formGroup]="authForm"
+      (ngSubmit)="onSubmit()"
+      class="bg-secondary p-6 rounded-3xl shadow-md w-full max-w-md"
     >
-      {{ isLogin ? "Login to your account" : "Create an account" }}
-    </button>
+      <h2 class="text-3xl font-extrabold mb-4 text-white">
+        {{ isLogin ? "Login" : "Sign Up" }}
+      </h2>
 
-    <p class="text-center my-4 cursor-pointer" (click)="toggleForm()">
-      <span [ngClass]="{ 'text-gray-100': isLogin, 'text-white': !isLogin }">
-        {{ isLogin ? "Need an account?" : "Already have an account?" }}
-      </span>
-      <span class="text-primary">
-        {{ isLogin ? " Sign Up" : " Login" }}
-      </span>
-    </p>
-  </form>
+      <div class="mb-4">
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Email Address"
+          class="p-4 border-b border-light w-full bg-transparent placeholder:text-lg px-4 outline-none text-white text-lg"
+        />
+        <div
+          *ngIf="
+            authForm.get('email')?.invalid &&
+            (authForm.get('email')?.touched || authForm.get('email')?.dirty)
+          "
+          class="relative"
+        >
+          <small class="text-primary text-sm absolute bottom-3 right-4"
+            >Can't be empty.</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="p-4 border-b border-light w-full bg-transparent placeholder:text-lg px-4 outline-none text-white text-lg"
+          placeholder="Password"
+        />
+        <div
+          *ngIf="
+            authForm.get('password')?.invalid &&
+            (authForm.get('password')?.touched ||
+              authForm.get('password')?.dirty)
+          "
+        >
+          <small class="text-primary text-sm"
+            >Password must be at least 6 characters long.</small
+          >
+        </div>
+      </div>
+
+      <!-- Conditionally show repeat password input for sign up -->
+      <div *ngIf="!isLogin" class="mb-6">
+        <input
+          type="password"
+          id="repeatPassword"
+          formControlName="repeatPassword"
+          class="p-4 border-b border-light w-full bg-transparent placeholder:text-lg px-4 outline-none text-white text-lg"
+          placeholder="Repeat password"
+        />
+        <div
+          *ngIf="
+            authForm.get('repeatPassword')?.invalid &&
+            (authForm.get('repeatPassword')?.touched ||
+              authForm.get('repeatPassword')?.dirty)
+          "
+          class="relative"
+        >
+          <small class="text-primary text-sm absolute bottom-3 right-4"
+            >Can't be empty.</small
+          >
+        </div>
+
+        <!-- Show error if passwords do not match -->
+        <div *ngIf="authForm.errors?.['mismatch']" class="relative">
+          <small class="text-primary text-sm absolute bottom-3 right-4"
+            >Passwords must match.</small
+          >
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-primary hover:bg-white hover:text-dark duration-300 transition-all ease-out text-white font-bold py-4 px-4 rounded-lg mt-2 cursor-pointer"
+        [disabled]="authForm.invalid"
+      >
+        {{ isLogin ? "Login to your account" : "Create an account" }}
+      </button>
+
+      <p class="text-center my-4 cursor-pointer" (click)="toggleForm()">
+        <span [ngClass]="{ 'text-gray-100': isLogin, 'text-white': !isLogin }">
+          {{ isLogin ? "Need an account?" : "Already have an account?" }}
+        </span>
+        <span class="text-primary">
+          {{ isLogin ? " Sign Up" : " Login" }}
+        </span>
+      </p>
+    </form>
+  </div>
 </div>
