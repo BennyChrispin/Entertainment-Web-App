@@ -1,7 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as AuthActions from '../../store/auth/auth.actions';
+
+export const passwordMatchValidator: ValidatorFn = (
+  control: AbstractControl
+): ValidationErrors | null => {
+  const password = control.get('password');
+  const repeatPassword = control.get('repeatPassword');
+  return password && repeatPassword && password.value !== repeatPassword.value
+    ? { mismatch: true }
+    : null;
+};
 
 @Component({
   selector: 'app-login-signup',
@@ -13,13 +30,15 @@ export class LoginSignupComponent implements OnInit {
   authForm: FormGroup;
 
   constructor(private fb: FormBuilder, private store: Store) {
-    this.authForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      repeatPassword: ['', [Validators.required]],
-    });
+    this.authForm = this.fb.group(
+      {
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        repeatPassword: ['', [Validators.required]],
+      },
+      { validators: passwordMatchValidator }
+    );
   }
-
   ngOnInit(): void {}
 
   onSubmit() {
