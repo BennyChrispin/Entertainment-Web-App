@@ -9,6 +9,7 @@ import { AuthModule } from '../app/store/auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginSignupComponent } from './auth/login-signup/login-signup.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +17,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     CustomPipePipe,
     LoginSignupComponent,
     SearchBarComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
