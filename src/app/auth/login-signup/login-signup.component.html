@@ -4,7 +4,7 @@
     (ngSubmit)="onSubmit()"
     class="bg-secondary p-6 rounded-3xl shadow-md w-full max-w-md"
   >
-    <h2 class="text-3xl font-bold mb-4 text-white text-start items-start">
+    <h2 class="text-3xl font-extrabold mb-4 text-white text-start items-start">
       {{ isLogin ? "Login" : "Sign Up" }}
     </h2>
 
@@ -21,8 +21,11 @@
           authForm.get('email')?.invalid &&
           (authForm.get('email')?.touched || authForm.get('email')?.dirty)
         "
+        class="relative"
       >
-        <small class="text-primary text-sm">Please enter a valid email.</small>
+        <small class="text-primary text-sm absolute bottom-3 right-4"
+          >Can't be empty.</small
+        >
       </div>
     </div>
 
@@ -61,19 +64,24 @@
           (authForm.get('repeatPassword')?.touched ||
             authForm.get('repeatPassword')?.dirty)
         "
+        class="relative"
       >
-        <small class="text-primary text-sm">Please repeat your password.</small>
+        <small class="text-primary text-sm absolute bottom-3 right-4"
+          >Can't be empty.</small
+        >
       </div>
 
       <!-- Show error if passwords do not match -->
-      <div *ngIf="authForm.errors?.['mismatch']">
-        <small class="text-primary text-sm">Passwords must match.</small>
+      <div *ngIf="authForm.errors?.['mismatch']" class="relative">
+        <small class="text-primary text-sm absolute bottom-3 right-4"
+          >Passwords must match.</small
+        >
       </div>
     </div>
 
     <button
       type="submit"
-      class="w-full bg-primary hover:bg-opacity-50 duration-300 transition-all ease-out text-white font-bold py-4 px-4 rounded-lg mt-2"
+      class="w-full bg-primary hover:bg-white hover:text-dark duration-300 transition-all ease-out text-white font-bold py-4 px-4 rounded-lg mt-2 cursor-pointer"
       [disabled]="authForm.invalid"
     >
       {{ isLogin ? "Login to your account" : "Create an account" }}
@@ -81,7 +89,7 @@
 
     <p
       (click)="toggleForm()"
-      class="text-center text-white cursor-pointer my-4"
+      class="text-center text-white my-4 cursor-pointer"
     >
       {{
         isLogin ? "Need an account? Sign Up" : "Already have an account? Login"
