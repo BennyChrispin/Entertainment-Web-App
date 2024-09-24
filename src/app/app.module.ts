@@ -10,7 +10,9 @@ import { TvseriesComponent } from './components/tvseries/tvseries.component';
 import { BookmarkedComponent } from './components/bookmarked/bookmarked.component';
 import { CardComponent } from './shared/components/card/card.component';
 import { CustomPipePipe } from './shared/pipes/custom-pipe.pipe';
-
+import { AuthModule } from '../app/store/auth/auth.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginSignupComponent } from './auth/login-signup/login-signup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,14 +21,17 @@ import { CustomPipePipe } from './shared/pipes/custom-pipe.pipe';
     TvseriesComponent,
     BookmarkedComponent,
     CardComponent,
-    CustomPipePipe
+    CustomPipePipe,
+    LoginSignupComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
+    AuthModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

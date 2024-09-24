@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginSignupComponent } from './auth/login-signup/login-signup.component';
 
 const routes: Routes = [
+  { path: 'auth', component: LoginSignupComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'home',
