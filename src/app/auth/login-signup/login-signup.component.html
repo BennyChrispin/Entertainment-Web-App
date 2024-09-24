@@ -87,13 +87,13 @@
       {{ isLogin ? "Login to your account" : "Create an account" }}
     </button>
 
-    <p
-      (click)="toggleForm()"
-      class="text-center text-white my-4 cursor-pointer"
-    >
-      {{
-        isLogin ? "Need an account? Sign Up" : "Already have an account? Login"
-      }}
+    <p class="text-center my-4 cursor-pointer" (click)="toggleForm()">
+      <span [ngClass]="{ 'text-gray-100': isLogin, 'text-white': !isLogin }">
+        {{ isLogin ? "Need an account?" : "Already have an account?" }}
+      </span>
+      <span class="text-primary">
+        {{ isLogin ? " Sign Up" : " Login" }}
+      </span>
     </p>
   </form>
 </div>
