@@ -6,13 +6,29 @@
   >
     <div
       *ngFor="let movie of trendingMovies$ | async"
-      class="w-2/5 min-w-[calc(100%/3)] md:min-w-[calc(100%/2)] lg:min-w-[calc(100%/3)] flex-shrink-0 relative"
+      class="relative w-2/5 min-w-[calc(100%/3)] md:min-w-[calc(100%/2)] lg:min-w-[calc(100%/3)] flex-shrink-0 group"
     >
       <img
         [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"
         alt="{{ movie.title }}"
-        class="w-full h-64 object-cover rounded-2xl"
+        class="w-full h-64 object-cover rounded-2xl cursor-pointer"
       />
+
+      <div
+        class="cursor-pointer absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+      >
+        <div
+          class="w-32 h-12 pl-2 flex items-center rounded-full bg-gray bg-opacity-75 space-x-4"
+        >
+          <img
+            src="../../../assets/icons/icon-play.svg"
+            alt="Play"
+            class="w-8 h-8"
+          />
+          <h2 class="text-white font-bold text-base">Play</h2>
+        </div>
+      </div>
+
       <div class="flex flex-col absolute bottom-6 mx-10">
         <div class="flex items-center space-x-4">
           <p class="text-sm text-grayLight font-bold">{{ movie.year }}</p>
@@ -31,6 +47,8 @@
         </div>
         <h2 class="font-bold text-2xl text-white">{{ movie.title }}</h2>
       </div>
+
+      <!-- Bookmark Button -->
       <button
         class="absolute top-4 right-5 p-3 rounded-full bg-grayDark bg-opacity-60"
       >
