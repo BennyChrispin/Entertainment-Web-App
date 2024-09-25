@@ -5,6 +5,7 @@ export interface Movie {
   poster_path: string;
   year: number;
   category: string;
+  genre: string;
   rating: number;
   isBookmarked: boolean;
 }

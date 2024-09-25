@@ -10,6 +10,7 @@ module.exports = {
         secondary: "#161D2F",
         white: "#FFFFFF",
         gray: "#87898E",
+        grayLight: "#CDCFD3",
       },
       fontFamily: {
         outfit: ["Outfit Light", "sans-serif"],

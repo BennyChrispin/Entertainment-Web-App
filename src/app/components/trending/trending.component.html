@@ -1,22 +1,55 @@
-<div class="flex items-center">
+<div class="max-w-screen-2xl">
   <h1 class="font-medium text-white text-start text-2xl">Trending</h1>
-</div>
-
-<div *ngIf="loading$ | async">Loading...</div>
-<div *ngIf="error$ | async as error">
-  <p>Error: {{ error }}</p>
-</div>
-<div *ngIf="!(loading$ | async) && !(error$ | async)">
-  <div *ngFor="let movie of trendingMovies$ | async" class="movie-card">
-    <img
-      [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"
-      alt="{{ movie.title }}"
-    />
-    <div>
-      <h2>{{ movie.title }}</h2>
-      <p>{{ movie.overview }}</p>
-      <p>{{ movie.year }}</p>
-      <p>Rating: {{ movie.rating }}</p>
+  <div
+    *ngIf="!(loading$ | async) && !(error$ | async)"
+    class="mt-6 w-full flex flex-row overflow-x-auto scroll-smooth space-x-10"
+  >
+    <div
+      *ngFor="let movie of trendingMovies$ | async"
+      class="w-2/5 min-w-[calc(100%/3)] md:min-w-[calc(100%/2)] lg:min-w-[calc(100%/3)] flex-shrink-0 relative"
+    >
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"
+        alt="{{ movie.title }}"
+        class="w-full h-64 object-cover rounded-2xl"
+      />
+      <div class="flex flex-col absolute bottom-6 mx-10">
+        <div class="flex items-center space-x-4">
+          <p class="text-sm text-grayLight font-bold">{{ movie.year }}</p>
+          <div class="flex items-center space-x-2">
+            <img
+              src="../../../assets/icons/icon-category-movie.svg"
+              alt="Movie"
+              class="w-3 h-3"
+            />
+            <p class="text-sm text-grayLight">
+              {{ movie.genre | slice : 0 : 10
+              }}{{ movie.genre.length > 10 ? ".." : "" }}
+            </p>
+          </div>
+          <p class="text-sm text-grayLight">{{ movie.rating }}</p>
+        </div>
+        <h2 class="font-bold text-2xl text-white">{{ movie.title }}</h2>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- Loading Spinner -->
+<div
+  *ngIf="loading$ | async"
+  class="loading-container flex items-center justify-center"
+>
+  <div class="loading-bar">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+</div>
+
+<!-- Error Message -->
+<div *ngIf="error$ | async as error" class="error-container">
+  <p class="error-message">Error: {{ error }}</p>
 </div>
