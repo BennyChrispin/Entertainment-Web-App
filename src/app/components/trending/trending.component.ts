@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { loadMovies } from '../../store/movies/movies.actions';
+import { loadTrendMovies } from '../../store/movies/movies.actions';
 import {
   selectMovies,
   selectLoading,
@@ -22,7 +22,7 @@ export class TrendingComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadMovies());
+    this.store.dispatch(loadTrendMovies());
     this.trendingMovies$ = this.store.select(selectMovies);
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);

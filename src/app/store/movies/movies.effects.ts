@@ -13,15 +13,15 @@ export class MovieEffects {
 
   loadMovies$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MovieActions.loadMovies),
+      ofType(MovieActions.loadTrendMovies),
       mergeMap(() =>
         this.moviesService.getTrendingMovies().pipe(
           tap((movies) => {
             console.log('Fetched Trending Movies In Store:', movies);
           }),
-          map((movies) => MovieActions.loadMoviesSuccess({ movies })),
+          map((movies) => MovieActions.loadTrendMoviesSuccess({ movies })),
           catchError((error) =>
-            of(MovieActions.loadMoviesFailure({ error: error.message }))
+            of(MovieActions.loadTrendMoviesFailure({ error: error.message }))
           )
         )
       )
@@ -32,7 +32,6 @@ export class MovieEffects {
       ofType(MovieActions.loadRecommendedMovies),
       mergeMap((action) =>
         this.moviesService.getRecommendedMovies(action.movieId).pipe(
-          // Pass movieId here
           map((movies) =>
             MovieActions.loadRecommendedMoviesSuccess({ movies })
           ),

@@ -1,12 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import { Movie } from './movies.state';
 
-export const loadMovies = createAction('[Movies] Load Movies');
-export const loadMoviesSuccess = createAction(
+export const loadTrendMovies = createAction('[Movies] Load Movies');
+export const loadTrendMoviesSuccess = createAction(
   '[Movies] Load Movies Success',
   props<{ movies: Movie[] }>()
 );
-export const loadMoviesFailure = createAction(
+export const loadTrendMoviesFailure = createAction(
   '[Movies] Load Movies Failure',
   props<{ error: string }>()
 );

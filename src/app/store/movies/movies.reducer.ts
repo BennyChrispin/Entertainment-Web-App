@@ -8,13 +8,13 @@ export function reducer(state: MovieState | undefined, action: Action) {
 
 export const movieReducer = createReducer(
   initialMovieState,
-  on(MovieActions.loadMovies, (state) => ({ ...state, loading: true })),
-  on(MovieActions.loadMoviesSuccess, (state, { movies }) => ({
+  on(MovieActions.loadTrendMovies, (state) => ({ ...state, loading: true })),
+  on(MovieActions.loadTrendMoviesSuccess, (state, { movies }) => ({
     ...state,
     movies,
     loading: false,
   })),
-  on(MovieActions.loadMoviesFailure, (state, { error }) => ({
+  on(MovieActions.loadTrendMoviesFailure, (state, { error }) => ({
     ...state,
     error,
     loading: false,
