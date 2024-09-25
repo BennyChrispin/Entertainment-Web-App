@@ -9,6 +9,7 @@ module.exports = {
         light: "#5A698F",
         secondary: "#161D2F",
         white: "#FFFFFF",
+        gray: "#87898E",
       },
       fontFamily: {
         outfit: ["Outfit Light", "sans-serif"],

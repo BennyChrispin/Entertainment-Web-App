@@ -77,7 +77,6 @@
           >
         </div>
 
-        <!-- Show error if passwords do not match -->
         <div *ngIf="authForm.errors?.['mismatch']" class="relative">
           <small class="text-primary text-sm absolute bottom-3 right-4"
             >Passwords must match.</small
@@ -94,7 +93,7 @@
       </button>
 
       <p class="text-center my-4 cursor-pointer" (click)="toggleForm()">
-        <span [ngClass]="{ 'text-gray-100': isLogin, 'text-white': !isLogin }">
+        <span [ngClass]="{ 'text-[#fff]': isLogin, 'text-white': !isLogin }">
           {{ isLogin ? "Need an account?" : "Already have an account?" }}
         </span>
         <span class="text-primary">
