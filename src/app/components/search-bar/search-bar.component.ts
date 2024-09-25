@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,11 +13,13 @@ export class SearchBarComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.updatePlaceholder();
+      });
+
     this.updatePlaceholder();
-    // Listen to route changes
-    this.router.events.subscribe(() => {
-      this.updatePlaceholder();
-    });
   }
 
   updatePlaceholder() {
@@ -25,11 +28,13 @@ export class SearchBarComponent implements OnInit {
     if (currentRoute.includes('home')) {
       this.placeholder = 'Search for movies or TV series';
     } else if (currentRoute.includes('bookmarked')) {
-      this.placeholder = 'Search for bookmarked items';
+      this.placeholder = 'Search for bookmarked shows';
     } else if (currentRoute.includes('movies')) {
       this.placeholder = 'Search for movies';
     } else if (currentRoute.includes('tvseries')) {
       this.placeholder = 'Search for TV series';
+    } else {
+      this.placeholder = 'Search...';
     }
   }
 }
