@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as MovieActions from '../../store/movies/movies.actions';
 import { Movie } from '../../store/movies/movies.state';
 import {
   selectError,
