@@ -1,1 +1,22 @@
-<p>trending works!</p>
+<div class="flex items-center">
+  <h1 class="font-medium text-white text-start text-2xl">Trending</h1>
+</div>
+
+<div *ngIf="loading$ | async">Loading...</div>
+<div *ngIf="error$ | async as error">
+  <p>Error: {{ error }}</p>
+</div>
+<div *ngIf="!(loading$ | async) && !(error$ | async)">
+  <div *ngFor="let movie of trendingMovies$ | async" class="movie-card">
+    <img
+      [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"
+      alt="{{ movie.title }}"
+    />
+    <div>
+      <h2>{{ movie.title }}</h2>
+      <p>{{ movie.overview }}</p>
+      <p>{{ movie.year }}</p>
+      <p>Rating: {{ movie.rating }}</p>
+    </div>
+  </div>
+</div>

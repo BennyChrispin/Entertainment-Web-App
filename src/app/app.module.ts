@@ -41,12 +41,12 @@ import { TvSerieComponent } from './components/tv-serie/tv-serie.component';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({ movies: movieReducer }),
+    EffectsModule.forRoot([MovieEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: !isDevMode(),
       connectInZone: true,
     }),
-    EffectsModule.forRoot([MovieEffects]),
     AuthModule,
     CommonModule,
     ReactiveFormsModule,

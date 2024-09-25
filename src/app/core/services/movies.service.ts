@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { map, Observable, tap } from 'rxjs';
+import { Movie } from '../../store/movies/movies.state';
 
 @Injectable({
   providedIn: 'root',
@@ -15,26 +15,26 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
-  getTrendingMovies(): Observable<any> {
+  getTrendingMovies(): Observable<Movie[]> {
     return this.http
       .get(`${this.apiUrl}/trending/movie/week?api_key=${this.apiKey}`, {
         headers: this.headers,
       })
       .pipe(
-        tap((response) => {
-          console.log('Trending Movies:', response);
-        })
-      );
-  }
-
-  getRecommendedMovies(): Observable<any> {
-    return this.http
-      .get(`${this.apiUrl}/movie/popular?api_key=${this.apiKey}`, {
-        headers: this.headers,
-      })
-      .pipe(
-        tap((response) => {
-          console.log('Recommended Movies:', response);
+        map((response: any) => {
+          return response.results.map((movie: any) => ({
+            id: movie.id,
+            title: movie.title,
+            overview: movie.overview,
+            poster_path: movie.poster_path,
+            year: new Date(movie.release_date).getFullYear(),
+            category: 'Trending',
+            rating: movie.vote_average,
+            isBookmarked: false,
+          }));
+        }),
+        tap((movies) => {
+          console.log('Trending Movies:', movies);
         })
       );
   }

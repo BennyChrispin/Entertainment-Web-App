@@ -18,5 +18,5 @@ export interface MovieState {
 export const initialMovieState: MovieState = {
   movies: [],
   loading: false,
-  error: null,
+  error: '',
 };
