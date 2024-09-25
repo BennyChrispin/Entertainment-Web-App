@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -16,15 +16,26 @@ export class MoviesService {
   constructor(private http: HttpClient) {}
 
   getTrendingMovies(): Observable<any> {
-    return this.http.get(
-      `${this.apiUrl}/trending/movie/week?api_key=${this.apiKey}`,
-      { headers: this.headers }
-    );
+    return this.http
+      .get(`${this.apiUrl}/trending/movie/week?api_key=${this.apiKey}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        tap((response) => {
+          console.log('Trending Movies:', response);
+        })
+      );
   }
+
   getRecommendedMovies(): Observable<any> {
-    return this.http.get(
-      `${this.apiUrl}/movie/popular?api_key=${this.apiKey}`,
-      { headers: this.headers }
-    );
+    return this.http
+      .get(`${this.apiUrl}/movie/popular?api_key=${this.apiKey}`, {
+        headers: this.headers,
+      })
+      .pipe(
+        tap((response) => {
+          console.log('Recommended Movies:', response);
+        })
+      );
   }
 }

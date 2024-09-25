@@ -1,34 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginSignupComponent } from './auth/login-signup/login-signup.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MoviesComponent } from './pages/movies/movies.component';
+import { TvseriesComponent } from './pages/tvseries/tvseries.component';
+import { BookmarkedComponent } from './pages/bookmarked/bookmarked.component';
 
 const routes: Routes = [
   { path: 'auth', component: LoginSignupComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('./components/home/home.module').then((m) => m.HomeModule),
-  },
-  {
-    path: 'movies',
-    loadChildren: () =>
-      import('./components/movies/movies.module').then((m) => m.MoviesModule),
-  },
-  {
-    path: 'tvseries',
-    loadChildren: () =>
-      import('./components/tvseries/tvseries.module').then(
-        (m) => m.TvseriesModule
-      ),
-  },
-  {
-    path: 'bookmarked',
-    loadChildren: () =>
-      import('./components/bookmarked/bookmarked.module').then(
-        (m) => m.BookmarkedModule
-      ),
-  },
+  { path: 'home', component: HomeComponent },
+  { path: 'movies', component: MoviesComponent },
+  { path: 'tvseries', component: TvseriesComponent },
+  { path: 'bookmarked', component: BookmarkedComponent },
   { path: '**', redirectTo: '/home' },
 ];
 
