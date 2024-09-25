@@ -11,6 +11,7 @@ module.exports = {
         white: "#FFFFFF",
         gray: "#87898E",
         grayLight: "#CDCFD3",
+        grayDark: "#64687A",
       },
       fontFamily: {
         outfit: ["Outfit Light", "sans-serif"],
