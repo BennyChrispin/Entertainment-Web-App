@@ -12,6 +12,11 @@ export const selectLoading = createSelector(
   selectMovieState,
   (state: MovieState) => state.loading
 );
+
+export const selectRecommendedMovies = createSelector(
+  selectMovieState,
+  (state: MovieState) => state.recommendedMovies
+);
 export const selectError = createSelector(
   selectMovieState,
   (state: MovieState) => state.error || ''

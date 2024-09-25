@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -8,6 +8,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
+  isScrolled = false;
   placeholder: string = 'Search...';
 
   constructor(private router: Router) {}
@@ -20,6 +21,16 @@ export class SearchBarComponent implements OnInit {
       });
 
     this.updatePlaceholder();
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const searchBar = document.getElementById('search-bar');
+    if (window.pageYOffset > 50) {
+      searchBar?.classList.add('scrolled');
+    } else {
+      searchBar?.classList.remove('scrolled');
+    }
   }
 
   updatePlaceholder() {

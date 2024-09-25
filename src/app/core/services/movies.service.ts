@@ -16,6 +16,10 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
+  private mapGenreIdsToNames(genreIds: number[]): string {
+    return genreIds.map((id) => this.genres[id]).join(', ');
+  }
+
   getGenres(): Observable<any> {
     return this.http
       .get(`${this.apiUrl}/genre/movie/list?api_key=${this.apiKey}`, {
@@ -56,8 +60,31 @@ export class MoviesService {
       })
     );
   }
-
-  private mapGenreIdsToNames(genreIds: number[]): string {
-    return genreIds.map((id) => this.genres[id]).join(', ');
+  getRecommendedMovies(movieId: number): Observable<Movie[]> {
+    return this.http
+      .get(
+        `${this.apiUrl}/movie/${movieId}/recommendations?api_key=${this.apiKey}`,
+        {
+          headers: this.headers,
+        }
+      )
+      .pipe(
+        map((response: any) => {
+          return response.results.map((movie: any) => ({
+            id: movie.id,
+            title: movie.title,
+            overview: movie.overview,
+            poster_path: movie.poster_path,
+            year: new Date(movie.release_date).getFullYear(),
+            category: 'Recommended',
+            rating: movie.vote_average,
+            genre: this.mapGenreIdsToNames(movie.genre_ids),
+            isBookmarked: false,
+          }));
+        }),
+        tap((movies) => {
+          console.log('Recommended Movies:', movies);
+        })
+      );
   }
 }

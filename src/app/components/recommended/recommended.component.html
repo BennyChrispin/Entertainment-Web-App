@@ -1,1 +1,41 @@
-<p>recommended works!</p>
+<div class="max-w-screen-2xl">
+  <h1 class="font-medium text-white text-start text-2xl">Recommended Movies</h1>
+  <div
+    *ngIf="!(loading$ | async) && !(error$ | async)"
+    class="grid grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-6"
+  >
+    <div *ngFor="let movie of recommendedMovies$ | async" class="flex flex-col">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"
+        alt="{{ movie.title }}"
+        class="w-full h-72 object-cover rounded-xl"
+      />
+      <div class="text-white mt-2">
+        <h2 class="font-semibold">{{ movie.title }}</h2>
+        <p class="text-sm">{{ movie.overview | slice : 0 : 20 }}...</p>
+        <p class="text-sm">{{ movie.year }}</p>
+        <p class="text-sm">Rating: {{ movie.rating }}</p>
+        <p class="text-sm">{{ movie.genre }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Spinner -->
+<div
+  *ngIf="loading$ | async"
+  class="loading-container flex items-center justify-center"
+>
+  <div class="loading-bar">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+</div>
+
+<!-- Error Message -->
+<div *ngIf="error$ | async as error" class="error-container">
+  <p class="error-message">Error: {{ error }}</p>
+</div>

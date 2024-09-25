@@ -1,14 +1,16 @@
-<div class="w-full relative">
-  <button>
-    <img
-      src="../../../assets/icons/icon-search.svg"
-      alt="Search Bar"
-      class="w-10 h-10 absolute bottom-5"
+<div class="max-w-screen-2xl">
+  <div class="w-5/6 fixed z-50 top-2 search-bar mt-8" id="search-bar">
+    <button>
+      <img
+        src="../../../assets/icons/icon-search.svg"
+        alt="Search Bar"
+        class="w-10 h-10 absolute bottom-5"
+      />
+    </button>
+    <input
+      type="text"
+      class="w-full p-6 bg-transparent placeholder:text-2xl placeholder:text-gray pl-14 outline-none text-white text-xl"
+      [placeholder]="placeholder"
     />
-  </button>
-  <input
-    type="text"
-    class="w-full p-6 bg-transparent placeholder:text-2xl placeholder:text-gray pl-14 outline-none text-white text-xl"
-    [placeholder]="placeholder"
-  />
+  </div>
 </div>

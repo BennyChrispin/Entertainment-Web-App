@@ -27,4 +27,24 @@ export class MovieEffects {
       )
     )
   );
+  loadRecommendedMovies$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MovieActions.loadRecommendedMovies),
+      mergeMap((action) =>
+        this.moviesService.getRecommendedMovies(action.movieId).pipe(
+          // Pass movieId here
+          map((movies) =>
+            MovieActions.loadRecommendedMoviesSuccess({ movies })
+          ),
+          catchError((error) =>
+            of(
+              MovieActions.loadRecommendedMoviesFailure({
+                error: error.message,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
 }

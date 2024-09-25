@@ -12,12 +12,14 @@ export interface Movie {
 
 export interface MovieState {
   movies: Movie[];
+  recommendedMovies: Movie[];
   loading: boolean;
   error: string | null;
 }
 
 export const initialMovieState: MovieState = {
   movies: [],
+  recommendedMovies: [],
   loading: false,
   error: '',
 };
