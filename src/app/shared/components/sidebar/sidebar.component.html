@@ -7,30 +7,46 @@
   <div
     class="flex flex-row lg:flex-col items-center w-full lg:space-y-10 space-y-0 space-x-8 md:space-x-10 lg:space-x-0"
   >
-    <a [routerLink]="['/home']">
+    <a [routerLink]="['/home']" routerLinkActive="active">
       <img
-        src="../../../../assets/icons/icon-nav-home.svg"
+        [src]="
+          router.isActive('/home', true)
+            ? '../../../../assets/icons/icon-home-active.svg'
+            : '../../../../assets/icons/icon-nav-home.svg'
+        "
         alt="Home"
         class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
       />
     </a>
-    <a [routerLink]="['/movies']">
+    <a [routerLink]="['/movies']" routerLinkActive="active">
       <img
-        src="../../../../assets/icons/icon-nav-movies.svg"
+        [src]="
+          router.isActive('/movies', true)
+            ? '../../../../assets/icons/icon-category-movie.svg'
+            : '../../../../assets/icons/icon-nav-movies.svg'
+        "
         alt="Movies"
         class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
       />
     </a>
-    <a [routerLink]="['/tvseries']">
+    <a [routerLink]="['/tvseries']" routerLinkActive="active">
       <img
-        src="../../../../assets/icons/icon-nav-tv-series.svg"
+        [src]="
+          router.isActive('/tvseries', true)
+            ? '../../../../assets/icons/icon-category-tv.svg'
+            : '../../../../assets/icons/icon-nav-tv-series.svg'
+        "
         alt="TV Shows"
         class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
       />
     </a>
-    <a [routerLink]="['/bookmarked']">
+    <a [routerLink]="['/bookmarked']" routerLinkActive="active">
       <img
-        src="../../../../assets/icons/icon-nav-bookmark.svg"
+        [src]="
+          router.isActive('/bookmarked', true)
+            ? '../../../../assets/icons/icon-bookmark-full.svg'
+            : '../../../../assets/icons/icon-nav-bookmark.svg'
+        "
         alt="Bookmarks"
         class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
       />

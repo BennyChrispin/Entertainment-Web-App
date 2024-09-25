@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
   showDropdown = false;
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
