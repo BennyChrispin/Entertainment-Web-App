@@ -7,15 +7,21 @@ import { AuthModule } from './store/auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { LoginSignupComponent } from './auth/login-signup/login-signup.component';
+import { movieReducer } from './store/movies/movies.reducer';
+import { MovieEffects } from './store/movies/movies.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent, SidebarComponent, LoginSignupComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
+    HttpClientModule,
+    StoreModule.forRoot({ movies: movieReducer }),
+    EffectsModule.forRoot([MovieEffects]),
     AuthModule,
     CommonModule,
     ReactiveFormsModule,
