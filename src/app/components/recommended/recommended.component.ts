@@ -8,7 +8,6 @@ import {
   selectRecommendedMovies,
 } from '../../store/movies/movies.selectors';
 import { loadRecommendedMovies } from '../../store/movies/movies.actions';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recommended',
@@ -22,25 +21,12 @@ export class RecommendedComponent implements OnInit {
   loading$!: Observable<boolean>;
   error$!: Observable<string>;
 
-  constructor(
-    private store: Store,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadRecommendedMovies({ movieId: 123 }));
     this.recommendedMovies$ = this.store.select(selectRecommendedMovies);
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
-
-    this.router.events.subscribe(() => {
-      const currentRoute = this.router.url;
-      if (currentRoute.includes('movies')) {
-        this.pageTitle = 'Movies';
-      } else {
-        this.pageTitle = 'Recommended for you';
-      }
-    });
   }
 }

@@ -21,6 +21,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TrendingComponent } from './components/trending/trending.component';
 import { RecommendedComponent } from './components/recommended/recommended.component';
 import { TvSerieComponent } from './components/tv-serie/tv-serie.component';
+import { MoviesListComponent } from './components/movies-list/movies-list.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { TvSerieComponent } from './components/tv-serie/tv-serie.component';
     TrendingComponent,
     RecommendedComponent,
     TvSerieComponent,
+    MoviesListComponent,
   ],
   imports: [
     BrowserModule,

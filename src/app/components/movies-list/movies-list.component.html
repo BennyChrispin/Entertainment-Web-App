@@ -1,13 +1,11 @@
 <div class="max-w-screen-2xl">
-  <h1 class="font-medium text-white text-start text-2xl">
-    Recommended for you
-  </h1>
+  <h1 class="font-medium text-white text-start text-2xl">Movies</h1>
   <div
     *ngIf="!(loading$ | async) && !(error$ | async)"
     class="grid md:grid-cols-4 sm:grid-cols-2 gap-x-10 gap-y-6 mt-10"
   >
     <div
-      *ngFor="let movie of recommendedMovies$ | async"
+      *ngFor="let movie of movies$ | async"
       class="flex flex-col gap-6 cursor-pointer group relative"
     >
       <img
@@ -15,6 +13,7 @@
         alt="{{ movie.title }}"
         class="w-full h-72 object-cover rounded-xl cursor-pointer"
       />
+
       <div
         class="cursor-pointer absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
       >
@@ -29,6 +28,7 @@
           <h2 class="text-white font-bold text-base">Play</h2>
         </div>
       </div>
+
       <div class="flex flex-col mb-4">
         <div class="flex items-center space-x-4">
           <p class="text-sm text-grayLight font-bold">{{ movie.year }}</p>
@@ -38,7 +38,6 @@
               alt="Movie"
               class="w-3 h-3"
             />
-
             <p class="text-sm text-grayLight">
               {{ movie.genre | slice : 0 : 10
               }}{{ movie.genre.length > 10 ? ".." : "" }}
@@ -48,6 +47,7 @@
         </div>
         <h2 class="font-bold text-2xl text-white">{{ movie.title }}</h2>
       </div>
+
       <button
         class="absolute top-4 right-5 p-3 text-white hover:text-dark rounded-full bg-grayDark bg-opacity-60 hover:bg-white duration-300 transition-all ease-out"
       >
