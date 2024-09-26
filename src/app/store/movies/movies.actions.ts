@@ -37,7 +37,23 @@ export const loadTvSeriesMoviesFailure = createAction(
   '[Movies] Load TV Series Movies Failure',
   props<{ error: string }>()
 );
+
 export const bookmarkMovie = createAction(
   '[Movies] Bookmark Movie',
-  props<{ id: number }>()
+  props<{ movieId: number }>()
+);
+
+export const unbookmarkMovie = createAction(
+  '[Movies] Unbookmark Movie',
+  props<{ movieId: number }>()
+);
+
+export const bookmarkTvSeries = createAction(
+  '[Movies] Bookmark TV Series',
+  props<{ tvSeriesId: number }>()
+);
+
+export const unbookmarkTvSeries = createAction(
+  '[Movies] Unbookmark TV Series',
+  props<{ tvSeriesId: number }>()
 );

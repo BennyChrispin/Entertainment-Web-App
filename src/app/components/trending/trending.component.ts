@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { loadTrendMovies } from '../../store/movies/movies.actions';
+import {
+  bookmarkMovie,
+  loadTrendMovies,
+  unbookmarkMovie,
+} from '../../store/movies/movies.actions';
 import {
   selectMovies,
   selectLoading,
@@ -26,5 +30,13 @@ export class TrendingComponent implements OnInit {
     this.trendingMovies$ = this.store.select(selectMovies);
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
+  }
+  bookmarkMovie(movieId: number) {
+    this.store.dispatch(bookmarkMovie({ movieId }));
+    console.log('This bookmark', movieId);
+  }
+  unbookmarkMovie(movieId: number) {
+    this.store.dispatch(unbookmarkMovie({ movieId }));
+    console.log('This bookmark', movieId);
   }
 }

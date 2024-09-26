@@ -23,3 +23,15 @@ export const selectError = createSelector(
   selectMovieState,
   (state: MovieState) => state.error || ''
 );
+export const selectBookmarkedMovies = createSelector(
+  selectMovieState,
+  (state: MovieState) =>
+    [...state.movies, ...state.recommendedMovies].filter(
+      (movie) => movie.isBookmarked
+    )
+);
+export const selectBookmarkedTvSeries = createSelector(
+  selectMovieState,
+  (state: MovieState) =>
+    state.tvSeriesMovies.filter((tvSeries) => tvSeries.isBookmarked)
+);

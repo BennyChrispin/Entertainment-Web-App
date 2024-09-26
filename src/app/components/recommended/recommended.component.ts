@@ -7,7 +7,11 @@ import {
   selectLoading,
   selectRecommendedMovies,
 } from '../../store/movies/movies.selectors';
-import { loadRecommendedMovies } from '../../store/movies/movies.actions';
+import {
+  bookmarkMovie,
+  loadRecommendedMovies,
+  unbookmarkMovie,
+} from '../../store/movies/movies.actions';
 
 @Component({
   selector: 'app-recommended',
@@ -28,5 +32,14 @@ export class RecommendedComponent implements OnInit {
     this.recommendedMovies$ = this.store.select(selectRecommendedMovies);
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
+  }
+
+  bookmarkMovie(movieId: number) {
+    this.store.dispatch(bookmarkMovie({ movieId }));
+    console.log('This bookmark Recommended', movieId);
+  }
+  unbookmarkMovie(movieId: number) {
+    this.store.dispatch(unbookmarkMovie({ movieId }));
+    console.log('This bookmark', movieId);
   }
 }

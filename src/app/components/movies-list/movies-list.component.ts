@@ -12,6 +12,8 @@ import { Movie } from '../../store/movies/movies.state';
 import {
   loadTrendMovies,
   loadRecommendedMovies,
+  bookmarkMovie,
+  unbookmarkMovie,
 } from '../../store/movies/movies.actions';
 
 @Component({
@@ -29,7 +31,6 @@ export class MoviesListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(loadTrendMovies());
     this.store.dispatch(loadRecommendedMovies({ movieId: 123 }));
-
     const trendingMovies$ = this.store.select(selectMovies);
     const recommendedMovies$ = this.store.select(selectRecommendedMovies);
 
@@ -42,5 +43,14 @@ export class MoviesListComponent implements OnInit {
 
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
+  }
+
+  bookmarkMovie(movieId: number) {
+    this.store.dispatch(bookmarkMovie({ movieId }));
+    console.log('This bookmark', movieId);
+  }
+  unbookmarkMovie(movieId: number) {
+    this.store.dispatch(unbookmarkMovie({ movieId }));
+    console.log('This bookmark', movieId);
   }
 }

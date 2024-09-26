@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { loadTvSeriesMovies } from '../../store/movies/movies.actions';
+import {
+  bookmarkMovie,
+  loadTvSeriesMovies,
+  unbookmarkMovie,
+} from '../../store/movies/movies.actions';
 import {
   selectTvSeriesMovies,
   selectLoading,
@@ -26,10 +30,5 @@ export class TvSerieListComponent implements OnInit {
     this.tvSeriesMovies$ = this.store.select(selectTvSeriesMovies);
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
-  }
-
-  toggleBookmark(id: number) {
-    // Implement your bookmark toggle logic here
-    console.log('This Bookmarks Series', id);
   }
 }
