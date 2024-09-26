@@ -32,12 +32,11 @@ export class TvSerieListComponent implements OnInit {
     this.error$ = this.store.select(selectError);
   }
 
-  bookmarkTvSerieMovie(tvSeriesId: number) {
-    this.store.dispatch(bookmarkTvSeries({ tvSeriesId }));
-    console.log('This Tv bookmark', tvSeriesId);
-  }
-  unbookmarkMovie(tvSeriesId: number) {
-    this.store.dispatch(unbookmarkTvSeries({ tvSeriesId }));
-    console.log('This Tv bookmark', tvSeriesId);
+  toggleTvSerieBookmark(serie: Movie) {
+    if (serie.isBookmarked) {
+      this.store.dispatch(unbookmarkTvSeries({ tvSeriesId: serie.id }));
+    } else {
+      this.store.dispatch(bookmarkTvSeries({ tvSeriesId: serie.id }));
+    }
   }
 }

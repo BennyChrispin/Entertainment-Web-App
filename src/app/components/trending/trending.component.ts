@@ -31,12 +31,11 @@ export class TrendingComponent implements OnInit {
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
   }
-  bookmarkMovie(movieId: number) {
-    this.store.dispatch(bookmarkMovie({ movieId }));
-    console.log('This bookmark', movieId);
-  }
-  unbookmarkMovie(movieId: number) {
-    this.store.dispatch(unbookmarkMovie({ movieId }));
-    console.log('This bookmark', movieId);
+  toggleBookmark(movie: Movie) {
+    if (movie.isBookmarked) {
+      this.store.dispatch(unbookmarkMovie({ movieId: movie.id }));
+    } else {
+      this.store.dispatch(bookmarkMovie({ movieId: movie.id }));
+    }
   }
 }

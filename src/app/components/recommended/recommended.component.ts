@@ -34,12 +34,11 @@ export class RecommendedComponent implements OnInit {
     this.error$ = this.store.select(selectError);
   }
 
-  bookmarkMovie(movieId: number) {
-    this.store.dispatch(bookmarkMovie({ movieId }));
-    console.log('This bookmark Recommended', movieId);
-  }
-  unbookmarkMovie(movieId: number) {
-    this.store.dispatch(unbookmarkMovie({ movieId }));
-    console.log('This bookmark', movieId);
+  toggleBookmark(movie: Movie) {
+    if (movie.isBookmarked) {
+      this.store.dispatch(unbookmarkMovie({ movieId: movie.id }));
+    } else {
+      this.store.dispatch(bookmarkMovie({ movieId: movie.id }));
+    }
   }
 }
