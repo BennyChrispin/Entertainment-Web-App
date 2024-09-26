@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Movie } from '../../store/movies/movies.state';
@@ -19,6 +19,7 @@ import {
   styleUrls: ['./recommended.component.css'],
 })
 export class RecommendedComponent implements OnInit {
+  @Input() searchQuery: string = '';
   pageTitle: string = 'Recommended for you';
 
   recommendedMovies$!: Observable<Movie[]>;

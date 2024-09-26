@@ -1,5 +1,5 @@
 <div class="w-full flex flex-col space-y-10 gap-10">
-  <app-search-bar></app-search-bar>
-  <app-trending></app-trending>
-  <app-recommended></app-recommended>
+  <app-search-bar (searchQuery)="onSearch($event)"></app-search-bar>
+  <app-trending [searchQuery]="searchQuery"></app-trending>
+  <app-recommended [searchQuery]="searchQuery"></app-recommended>
 </div>

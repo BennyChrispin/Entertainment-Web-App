@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
@@ -19,6 +19,7 @@ import { Movie } from '../../store/movies/movies.state';
   styleUrls: ['./trending.component.css'],
 })
 export class TrendingComponent implements OnInit {
+  @Input() searchQuery: string = '';
   trendingMovies$!: Observable<Movie[]>;
   loading$!: Observable<boolean>;
   error$!: Observable<string>;
@@ -37,5 +38,8 @@ export class TrendingComponent implements OnInit {
     } else {
       this.store.dispatch(bookmarkMovie({ movieId: movie.id }));
     }
+  }
+  onSearch(query: string) {
+    this.searchQuery = query;
   }
 }

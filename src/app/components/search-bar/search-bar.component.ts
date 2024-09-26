@@ -1,4 +1,10 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -11,6 +17,7 @@ export class SearchBarComponent implements OnInit {
   isScrolled = false;
   placeholder: string = 'Search...';
 
+  @Output() searchQuery = new EventEmitter<string>();
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -47,5 +54,10 @@ export class SearchBarComponent implements OnInit {
     } else {
       this.placeholder = 'Search...';
     }
+  }
+
+  onSearch(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    this.searchQuery.emit(inputElement.value);
   }
 }
