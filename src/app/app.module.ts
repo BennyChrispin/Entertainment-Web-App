@@ -20,8 +20,9 @@ import { TvseriesComponent } from './pages/tvseries/tvseries.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TrendingComponent } from './components/trending/trending.component';
 import { RecommendedComponent } from './components/recommended/recommended.component';
-import { TvSerieComponent } from './components/tv-serie/tv-serie.component';
 import { MoviesListComponent } from './components/movies-list/movies-list.component';
+import { TvSerieListComponent } from './components/tv-serie-list/tv-serie-list.component';
+import { BookMarkListComponent } from './components/book-mark-list/book-mark-list.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +36,9 @@ import { MoviesListComponent } from './components/movies-list/movies-list.compon
     TvseriesComponent,
     TrendingComponent,
     RecommendedComponent,
-    TvSerieComponent,
     MoviesListComponent,
+    TvSerieListComponent,
+    BookMarkListComponent,
   ],
   imports: [
     BrowserModule,
