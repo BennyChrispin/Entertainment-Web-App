@@ -110,7 +110,14 @@ export const movieReducer = createReducer(
         ? { ...tvSeries, isBookmarked: true }
         : tvSeries
     );
-    return { ...state, tvSeriesMovies: updatedTvSeriesMovies };
+    const bookmarkedTvSeries = updatedTvSeriesMovies.filter(
+      (tvSeries) => tvSeries.isBookmarked
+    );
+    return {
+      ...state,
+      tvSeriesMovies: updatedTvSeriesMovies,
+      bookmarkedTvSeries,
+    };
   }),
   on(MovieActions.unbookmarkTvSeries, (state, { tvSeriesId }) => {
     const updatedTvSeriesMovies = state.tvSeriesMovies.map((tvSeries) =>
@@ -118,6 +125,13 @@ export const movieReducer = createReducer(
         ? { ...tvSeries, isBookmarked: false }
         : tvSeries
     );
-    return { ...state, tvSeriesMovies: updatedTvSeriesMovies };
+    const bookmarkedTvSeries = updatedTvSeriesMovies.filter(
+      (tvSeries) => tvSeries.isBookmarked
+    );
+    return {
+      ...state,
+      tvSeriesMovies: updatedTvSeriesMovies,
+      bookmarkedTvSeries,
+    };
   })
 );

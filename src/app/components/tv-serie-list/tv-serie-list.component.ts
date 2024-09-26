@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
-  bookmarkMovie,
+  bookmarkTvSeries,
   loadTvSeriesMovies,
-  unbookmarkMovie,
+  unbookmarkTvSeries,
 } from '../../store/movies/movies.actions';
 import {
   selectTvSeriesMovies,
@@ -30,5 +30,14 @@ export class TvSerieListComponent implements OnInit {
     this.tvSeriesMovies$ = this.store.select(selectTvSeriesMovies);
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectError);
+  }
+
+  bookmarkTvSerieMovie(tvSeriesId: number) {
+    this.store.dispatch(bookmarkTvSeries({ tvSeriesId }));
+    console.log('This Tv bookmark', tvSeriesId);
+  }
+  unbookmarkMovie(tvSeriesId: number) {
+    this.store.dispatch(unbookmarkTvSeries({ tvSeriesId }));
+    console.log('This Tv bookmark', tvSeriesId);
   }
 }

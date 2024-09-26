@@ -32,6 +32,5 @@ export const selectBookmarkedMovies = createSelector(
 );
 export const selectBookmarkedTvSeries = createSelector(
   selectMovieState,
-  (state: MovieState) =>
-    state.tvSeriesMovies.filter((tvSeries) => tvSeries.isBookmarked)
+  (state: MovieState) => state.bookmarkedTvSeries
 );
