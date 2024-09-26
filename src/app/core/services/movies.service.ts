@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable, forkJoin, tap } from 'rxjs';
+import { map, Observable, forkJoin, tap, catchError, of } from 'rxjs';
 import { Movie } from '../../store/movies/movies.state';
 
 @Injectable({
@@ -84,6 +84,29 @@ export class MoviesService {
         }),
         tap((movies) => {
           console.log('Recommended Movies:', movies);
+        })
+      );
+  }
+  getTvSeriesMovies(): Observable<Movie[]> {
+    return this.http
+      .get(`${this.apiUrl}/tv/popular?api_key=${this.apiKey}`)
+      .pipe(
+        map((response: any) =>
+          response.results.map((series: any) => ({
+            id: series.id,
+            title: series.name,
+            overview: series.overview,
+            poster_path: series.poster_path,
+            year: new Date(series.first_air_date).getFullYear(),
+            category: 'TV Series',
+            genre: this.mapGenreIdsToNames(series.genre_ids),
+            rating: series.vote_average,
+            isBookmarked: false,
+          }))
+        ),
+        catchError((error) => {
+          console.error('Error fetching TV series', error);
+          return of([]);
         })
       );
   }

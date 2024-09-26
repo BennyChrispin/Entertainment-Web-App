@@ -1,6 +1,11 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { MovieState, initialMovieState } from './movies.state';
 import * as MovieActions from './movies.actions';
+import {
+  loadTvSeriesMovies,
+  loadTvSeriesMoviesFailure,
+  loadTvSeriesMoviesSuccess,
+} from './movies.actions';
 
 export function reducer(state: MovieState | undefined, action: Action) {
   return movieReducer(state, action);
@@ -29,6 +34,17 @@ export const movieReducer = createReducer(
     recommendedMovies: movies,
   })),
   on(MovieActions.loadRecommendedMoviesFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
+  })),
+  on(loadTvSeriesMovies, (state) => ({ ...state, loading: true })),
+  on(loadTvSeriesMoviesSuccess, (state, { tvSeriesMovies }) => ({
+    ...state,
+    loading: false,
+    tvSeriesMovies,
+  })),
+  on(loadTvSeriesMoviesFailure, (state, { error }) => ({
     ...state,
     loading: false,
     error,

@@ -1,10 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { loadTvSeriesMovies } from '../../store/movies/movies.actions';
+import {
+  selectTvSeriesMovies,
+  selectLoading,
+  selectError,
+} from '../../store/movies/movies.selectors';
+import { Movie } from '../../store/movies/movies.state';
 
 @Component({
   selector: 'app-tv-serie-list',
   templateUrl: './tv-serie-list.component.html',
-  styleUrl: './tv-serie-list.component.css'
+  styleUrls: ['./tv-serie-list.component.css'],
 })
-export class TvSerieListComponent {
+export class TvSerieListComponent implements OnInit {
+  tvSeriesMovies$!: Observable<Movie[]>;
+  loading$!: Observable<boolean>;
+  error$!: Observable<string | null>;
 
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(loadTvSeriesMovies());
+    this.tvSeriesMovies$ = this.store.select(selectTvSeriesMovies);
+    this.loading$ = this.store.select(selectLoading);
+    this.error$ = this.store.select(selectError);
+  }
+
+  toggleBookmark(id: number) {
+    // Implement your bookmark toggle logic here
+    console.log('This Bookmarks Series', id);
+  }
 }

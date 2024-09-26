@@ -7,15 +7,17 @@ export const selectMovies = createSelector(
   selectMovieState,
   (state: MovieState) => state.movies
 );
-
-export const selectLoading = createSelector(
-  selectMovieState,
-  (state: MovieState) => state.loading
-);
-
 export const selectRecommendedMovies = createSelector(
   selectMovieState,
   (state: MovieState) => state.recommendedMovies
+);
+export const selectTvSeriesMovies = createSelector(
+  selectMovieState,
+  (state: MovieState) => state.tvSeriesMovies
+);
+export const selectLoading = createSelector(
+  selectMovieState,
+  (state: MovieState) => state.loading
 );
 export const selectError = createSelector(
   selectMovieState,

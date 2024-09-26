@@ -4,6 +4,11 @@ import { MoviesService } from '../../core/services/movies.service';
 import * as MovieActions from './movies.actions';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import {
+  loadTvSeriesMovies,
+  loadTvSeriesMoviesFailure,
+  loadTvSeriesMoviesSuccess,
+} from './movies.actions';
 
 @Injectable()
 export class MovieEffects {
@@ -42,6 +47,19 @@ export class MovieEffects {
               })
             )
           )
+        )
+      )
+    )
+  );
+  loadTvSeriesMovies$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadTvSeriesMovies),
+      mergeMap(() =>
+        this.moviesService.getTvSeriesMovies().pipe(
+          map((tvSeriesMovies) =>
+            loadTvSeriesMoviesSuccess({ tvSeriesMovies })
+          ),
+          catchError((error) => of(loadTvSeriesMoviesFailure({ error })))
         )
       )
     )

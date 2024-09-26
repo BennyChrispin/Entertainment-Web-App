@@ -1,3 +1,91 @@
 <div class="max-w-screen-2xl">
-  <h1 class="font-medium text-white text-start text-2xl">Tv Series</h1>
+  <h1 class="font-medium text-white text-start text-2xl">TV Series</h1>
+  <div
+    *ngIf="!(loading$ | async) && !(error$ | async)"
+    class="grid md:grid-cols-4 sm:grid-cols-2 gap-x-10 gap-y-6 mt-10"
+  >
+    <div
+      *ngFor="let series of tvSeriesMovies$ | async"
+      class="flex flex-col gap-6 cursor-pointer group relative"
+    >
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500/' + series.poster_path"
+        alt="{{ series.title }}"
+        class="w-full h-72 object-cover rounded-xl cursor-pointer"
+      />
+
+      <div
+        class="cursor-pointer absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+      >
+        <div
+          class="w-32 h-12 pl-2 flex items-center rounded-full bg-gray bg-opacity-75 space-x-4 absolute top-28 hover:border-white hover:border-2 duration-300 transition-all"
+        >
+          <img
+            src="../../../assets/icons/icon-play.svg"
+            alt="Play"
+            class="w-8 h-8"
+          />
+          <h2 class="text-white font-bold text-base">Play</h2>
+        </div>
+      </div>
+
+      <div class="flex flex-col mb-4 px-6">
+        <div class="flex items-center space-x-4">
+          <p class="text-sm text-grayLight font-bold">{{ series.year }}</p>
+          <div class="flex items-center space-x-2">
+            <img
+              src="../../../assets/icons/icon-category-tv.svg"
+              alt="TV Series"
+              class="w-3 h-3"
+            />
+            <p class="text-sm text-grayLight">
+              {{ series.genre | slice : 0 : 10
+              }}{{ series.genre.length > 10 ? ".." : "" }}
+            </p>
+          </div>
+          <p class="text-sm text-grayLight">{{ series.rating }}</p>
+        </div>
+        <h2 class="font-bold text-2xl text-white">{{ series.title }}</h2>
+      </div>
+
+      <button
+        class="absolute top-4 right-5 p-3 text-white hover:text-dark rounded-full bg-grayDark bg-opacity-60 hover:bg-white duration-300 transition-all ease-out"
+        (click)="toggleBookmark(series.id)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Spinner -->
+<div
+  *ngIf="loading$ | async"
+  class="loading-container flex items-center justify-center"
+>
+  <div class="loading-bar">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+</div>
+
+<!-- Error Message -->
+<div *ngIf="error$ | async as error" class="error-container">
+  <p class="error-message">Error: {{ error }}</p>
 </div>

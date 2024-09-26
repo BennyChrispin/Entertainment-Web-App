@@ -23,6 +23,20 @@ export const loadRecommendedMoviesFailure = createAction(
   '[Movies] Load Recommended Movies Failure',
   props<{ error: string }>()
 );
+
+export const loadTvSeriesMovies = createAction(
+  '[Movies] Load TV Series Movies'
+);
+
+export const loadTvSeriesMoviesSuccess = createAction(
+  '[Movies] Load TV Series Movies Success',
+  props<{ tvSeriesMovies: Movie[] }>()
+);
+
+export const loadTvSeriesMoviesFailure = createAction(
+  '[Movies] Load TV Series Movies Failure',
+  props<{ error: string }>()
+);
 export const bookmarkMovie = createAction(
   '[Movies] Bookmark Movie',
   props<{ id: number }>()

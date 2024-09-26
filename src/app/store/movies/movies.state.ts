@@ -13,6 +13,7 @@ export interface Movie {
 export interface MovieState {
   movies: Movie[];
   recommendedMovies: Movie[];
+  tvSeriesMovies: Movie[];
   loading: boolean;
   error: string | null;
 }
@@ -20,6 +21,7 @@ export interface MovieState {
 export const initialMovieState: MovieState = {
   movies: [],
   recommendedMovies: [],
+  tvSeriesMovies: [],
   loading: false,
   error: '',
 };
