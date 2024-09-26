@@ -4,9 +4,13 @@
 
 This is a visually appealing and responsive entertainment web application built using Angular, NgRx, and RxJS. It allows users to browse and interact with movies, TV series, and bookmarks. The project emphasizes state management with NgRx and leverages RxJS for efficient data handling and asynchronous operations.
 
+## GitHub Repo
+
+[https://github.com/BennyChrispin/Entertainment-Web-App]
+
 ## Live Demo
 
-[Live Demo Link](#) — (replace with actual link after deployment)
+[https://main--movieent-app.netlify.app]
 
 ## Features
 
