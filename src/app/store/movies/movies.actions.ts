@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Movie } from './movies.state';
 
+// Load Trending Movies
 export const loadTrendMovies = createAction('[Movies] Load Movies');
 export const loadTrendMoviesSuccess = createAction(
   '[Movies] Load Movies Success',
@@ -10,6 +11,7 @@ export const loadTrendMoviesFailure = createAction(
   '[Movies] Load Movies Failure',
   props<{ error: string }>()
 );
+// Load Recommended Movies
 export const loadRecommendedMovies = createAction(
   '[Movies] Load Recommended Movies',
   props<{ movieId: number }>()
@@ -23,7 +25,7 @@ export const loadRecommendedMoviesFailure = createAction(
   '[Movies] Load Recommended Movies Failure',
   props<{ error: string }>()
 );
-
+// Load Tv Series Movies
 export const loadTvSeriesMovies = createAction(
   '[Movies] Load TV Series Movies'
 );
@@ -38,6 +40,7 @@ export const loadTvSeriesMoviesFailure = createAction(
   props<{ error: string }>()
 );
 
+// Bookmark/Unbookmark Movies
 export const bookmarkMovie = createAction(
   '[Movies] Bookmark Movie',
   props<{ movieId: number }>()

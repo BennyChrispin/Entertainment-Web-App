@@ -18,6 +18,7 @@ export class SearchBarComponent implements OnInit {
   placeholder: string = 'Search...';
 
   @Output() searchQuery = new EventEmitter<string>();
+
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -40,6 +41,7 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
+  // Update placeholder text based on route
   updatePlaceholder() {
     const currentRoute = this.router.url;
 
@@ -56,8 +58,9 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
+  // Emit the search query as the user types
   onSearch(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    this.searchQuery.emit(inputElement.value);
+    const query = (event.target as HTMLInputElement).value;
+    this.searchQuery.emit(query);
   }
 }

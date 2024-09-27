@@ -2,12 +2,17 @@
   <h1 class="font-medium text-white text-start text-2xl">
     Recommended for you
   </h1>
+  <!-- Search Result Message -->
+  <div *ngIf="searchResultMessage$ | async as message" class="mt-4">
+    <p class="text-white text-lg">{{ message }}</p>
+  </div>
+  <!-- Movies Grid -->
   <div
     *ngIf="!(loading$ | async) && !(error$ | async)"
     class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 lg:gap-x-10 md:gap-x-8 gap-x-4 gap-y-6 mt-10"
   >
     <div
-      *ngFor="let movie of recommendedMovies$ | async"
+      *ngFor="let movie of filteredMovies$ | async"
       class="flex flex-col gap-6 cursor-pointer group relative"
     >
       <img
@@ -15,6 +20,7 @@
         alt="{{ movie.title }}"
         class="w-full h-72 object-cover rounded-xl cursor-pointer"
       />
+      <!-- Overlay on Hover -->
       <div
         class="cursor-pointer absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
       >
@@ -29,6 +35,7 @@
           <h2 class="text-white font-bold text-base">Play</h2>
         </div>
       </div>
+      <!-- Movie Details -->
       <div class="flex flex-col mb-4 px-6">
         <div class="flex items-center space-x-4">
           <p class="text-sm text-grayLight font-bold">{{ movie.year }}</p>
@@ -48,6 +55,7 @@
         </div>
         <h2 class="font-bold text-2xl text-white">{{ movie.title }}</h2>
       </div>
+      <!-- Bookmark Button -->
       <button
         (click)="toggleBookmark(movie)"
         class="absolute top-4 right-5 p-3 text-white hover:text-dark rounded-full bg-grayDark bg-opacity-60 hover:bg-white duration-300 transition-all ease-out"

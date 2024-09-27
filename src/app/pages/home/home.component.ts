@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   searchQuery = '';
+  // Method to handle search query emitted from SearchBarComponent
   onSearch(query: string) {
     this.searchQuery = query;
   }
