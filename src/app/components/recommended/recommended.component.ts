@@ -21,7 +21,6 @@ import {
 })
 export class RecommendedComponent implements OnInit {
   private searchQuery$ = new BehaviorSubject<string>('');
-
   @Input() set searchQuery(query: string) {
     this.searchQuery$.next(query);
   }

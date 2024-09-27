@@ -5,4 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.css',
 })
-export class MoviesComponent {}
+export class MoviesComponent {
+  searchQuery: string = '';
+
+  // This method updates the search query whenever the search bar emits a new value
+  onSearch(query: string) {
+    this.searchQuery = query.toLowerCase();
+  }
+}
