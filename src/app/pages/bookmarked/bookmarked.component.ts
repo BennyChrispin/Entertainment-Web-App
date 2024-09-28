@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './bookmarked.component.html',
   styleUrl: './bookmarked.component.css',
 })
-export class BookmarkedComponent {}
+export class BookmarkedComponent {
+  searchQuery = '';
+  // Method to handle search query emitted from SearchBarComponent
+  onSearch(query: string) {
+    this.searchQuery = query;
+  }
+}

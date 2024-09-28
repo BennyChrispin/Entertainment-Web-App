@@ -1,4 +1,10 @@
 <div class="max-w-full">
+  <!-- Display search results count -->
+  <!-- <div *ngIf="movieCount > 0 || tvSeriesCount > 0" class="mb-4">
+    <p class="text-white">
+      Found {{ movieCount }} movies and {{ tvSeriesCount }} TV series.
+    </p>
+  </div> -->
   <!-- Bookmarked Movies Section -->
   <ng-container
     *ngIf="(bookmarkedMovies$ | async)?.length as moviesLength; else noMovies"
