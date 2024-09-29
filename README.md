@@ -10,7 +10,7 @@ This is a visually appealing and responsive entertainment web application built 
 
 ## Live Demo
 
-[https://main--movieent-app.netlify.app]
+[https://entertainment-web-app-dun-mu.vercel.app]
 
 ## Features
 
