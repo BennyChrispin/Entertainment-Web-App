@@ -12,32 +12,23 @@ import { LoginSignupComponent } from './auth/login-signup/login-signup.component
 import { movieReducer } from './store/movies/movies.reducer';
 import { MovieEffects } from './store/movies/movies.effects';
 import { EffectsModule } from '@ngrx/effects';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BookmarkedComponent } from './pages/bookmarked/bookmarked.component';
-import { MoviesComponent } from './pages/movies/movies.component';
-import { TvseriesComponent } from './pages/tvseries/tvseries.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TrendingComponent } from './components/trending/trending.component';
 import { RecommendedComponent } from './components/recommended/recommended.component';
-import { MoviesListComponent } from './components/movies-list/movies-list.component';
-import { TvSerieListComponent } from './components/tv-serie-list/tv-serie-list.component';
 import { BookMarkListComponent } from './components/book-mark-list/book-mark-list.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     LoginSignupComponent,
-    SearchBarComponent,
     HomeComponent,
     BookmarkedComponent,
-    MoviesComponent,
-    TvseriesComponent,
     TrendingComponent,
     RecommendedComponent,
-    MoviesListComponent,
-    TvSerieListComponent,
     BookMarkListComponent,
   ],
   imports: [
@@ -54,6 +45,7 @@ import { BookMarkListComponent } from './components/book-mark-list/book-mark-lis
     AuthModule,
     CommonModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
