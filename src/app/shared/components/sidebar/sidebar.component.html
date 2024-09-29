@@ -2,7 +2,13 @@
   class="fixed md:fixed top-0 md:top-0 z-50 bg-secondary w-full md:w-full h-24 lg:w-36 lg:h-[90%] md:mt-12 md:rounded-xl flex flex-row lg:flex-col justify-between lg:left-10 left-0"
 >
   <div class="flex items-center justify-center w-full lg:mt-10">
-    <img src="../../../../assets/icons/logo.svg" alt="Logo" class="w-12 h-12" />
+    <a [routerLink]="['/home']">
+      <img
+        src="../../../../assets/icons/logo.svg"
+        alt="Logo"
+        class="w-12 h-12"
+      />
+    </a>
   </div>
   <div
     class="flex flex-row lg:flex-col items-center w-full lg:space-y-10 space-y-0 space-x-8 md:space-x-10 lg:space-x-0"
