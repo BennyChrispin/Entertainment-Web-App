@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-bookmarked',
   templateUrl: './bookmarked.component.html',
-  styleUrl: './bookmarked.component.css',
+  styleUrls: ['./bookmarked.component.css'],
 })
 export class BookmarkedComponent {
-  searchQuery = '';
+  searchQuery: string = '';
+
   // Method to handle search query emitted from SearchBarComponent
   onSearch(query: string) {
     this.searchQuery = query;
